@@ -1,0 +1,7 @@
+---
+# handlers file for /Users/tsakuma/ansible-redis
+- name: restart redis
+  action: service name=redis state=restarted
+
+- name: reload consul
+  action: service name=consul state=reloaded

@@ -1,0 +1,11 @@
+{
+  "service": {
+    "name": "redis",
+    "tags": [{{ redis_consul_tags }}],
+    "port": {{ redis_service_port }},
+    "check": {
+      "script": "{{ redis_cli }} -h localhost -p {{ redis_service_port }} ping >/dev/null 2>&1",
+      "interval": "{{ redis_service_check_interval }}"
+    }
+  }
+}

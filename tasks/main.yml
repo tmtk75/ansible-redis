@@ -1,0 +1,23 @@
+---
+- yum: name=http://dl.fedoraproject.org/pub/epel/7/x86_64/e/epel-release-7-5.noarch.rpm
+  tags: [redis]
+
+- yum: name=redis
+  tags: [redis]
+
+- template: src=./redis.conf dest=/etc/redis.conf
+  tags: [redis, redis.config]
+  notify:
+  - restart redis
+
+- template: src=./redis-sentinel.conf dest=/etc/redis-sentinel.conf
+  tags: [redis, redis.config]
+
+- service: name=redis state=started
+  tags: [redis, redis.service]
+
+- template: src=./redis.json dest=/etc/consul.d/redis.json owner=consul group=consul mode=0644
+  tags: [redis, redis.consul]
+  notify:
+  - reload consul
+

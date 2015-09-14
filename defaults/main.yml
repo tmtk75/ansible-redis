@@ -1,0 +1,8 @@
+---
+# defaults file for /Users/tsakuma/ansible-redis
+redis_cli: /usr/bin/redis-cli
+redis_service_port: 6379
+redis_service_check_interval: "5s"
+redis_consul_tags: ''
+
+redis_bind: "127.0.0.1"
